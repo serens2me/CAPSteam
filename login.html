@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Login | D.Y. Patil College of Engineering, Kasba Bawada, Kolhapur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #003aa0; /* White background */
+  color: #000; /* Black text */
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #003aa0; /* Black navbar */
+  color: #ffffff; /* Gold text */
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(212,175,55,0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #ffffff; /* Gold */
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.nav-logo img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #ffffff; /* white background */
+  padding: 2px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+  color: #000; /* Black links */
+  background-color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: #ffffff;
+  background-color: #004aad; /* Gold hover */
+}
+
+
+
+.main-container {
+  flex-grow: 1;
+  max-width: 420px;
+  margin: 4rem auto 3rem;
+  background: #fff; /* White container background */
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.main-container:hover {
+  transform: scale(1.02);
+}
+
+.login-section h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #000; /* Black heading */
+  margin-bottom: 0.25rem;
+}
+
+.login-section .tagline {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #000;
+}
+
+.required {
+  color: #ffffff; /* Gold for asterisk */
+  margin-left: 4px;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  background: #fff; /* White inputs */
+  color: #000;
+}
+
+input:focus {
+  border-color: #ffffff; /* Gold border on focus */
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.error-message {
+  font-size: 0.85rem;
+  color: #d9534f; /* Use a red-ish color for errors */
+  min-height: 18px;
+  margin-top: -0.4rem;
+}
+
+.btn-submit {
+  background-color: #004aad; /* Gold submit button */
+  color: #ffffff;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+  background-color: #003a8c; /* Darker gold */
+  transform: translateY(-2px);
+}
+
+.redirect {
+  margin-top: 1.7rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+}
+
+.redirect a {
+  color: #000; /* Gold links */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #444; /* Black footer */
+  color: #ffffff; /* Gold text */
+  padding: 1.6rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 540px) {
+  .main-container {
+    margin: 2rem 1rem 3rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .nav-logo span {
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="dyp_logo.png" alt="DYP Logo" />
+        <span>D.Y. Patil College of Engineering</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="register_as_student.html" class="btn-register">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <section class="login-section">
+      <h1>Student Login</h1>
+      <p class="tagline">Secure access to Face Attendance System</p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Email Address<span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password<span class="required">*</span></label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+          <div class="error-message" id="passwordError"></div>
+        </div>
+
+        <button type="submit" class="btn-submit">Login</button>
+      </form>
+
+      <p class="redirect">
+        Don't have an account? <a href="register_as_student.html">Register here!</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>D.Y. Patil College of Engineering - Kasba Bawada, Kolhapur</p>
+      <p>Contact: info@dypcollege.edu.in | Phone: +91 12345 67890</p>
+      <p>© 2025 D.Y. Patil College of Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      ['emailError', 'passwordError'].forEach(id => {
+        document.getElementById(id).textContent = '';
+      });
+
+      let valid = true;
+      const email = loginForm.email.value.trim();
+      const password = loginForm.password.value.trim();
+
+      if (!email) {
+        document.getElementById('emailError').textContent = 'Email is required';
+        valid = false;
+      } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('emailError').textContent = 'Email is invalid';
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById('passwordError').textContent = 'Password is required';
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, password})
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          alert('Login successful! Redirecting...');
+          window.location.href = 'dashboard.html';
+        } else {
+          alert(result.msg || 'Login failed');
+        }
+      } catch (error) {
+        alert('Server error. Please try again later.');
+      }
+    });
+  </script>
+</body>
+</html>

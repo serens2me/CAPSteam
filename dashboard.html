@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Student Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2e86de;
+      --dark: #1e272e;
+      --light: #f1f2f6;
+      --white: #fff;
+      --bg: #f9f9f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: var(--bg);
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: var(--dark);
+      color: var(--white);
+      padding-top: 20px;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--white);
+      text-decoration: none;
+      padding: 15px 30px;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: var(--primary);
+    }
+
+    .sidebar i {
+      margin-right: 10px;
+    }
+
+    .main {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--white);
+      padding: 15px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .dark-mode {
+      --bg: #1e1e2f;
+      --white: #2f3542;
+      --dark: #111;
+      --light: #2f3542;
+      color: #fff;
+    }
+
+    .content {
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .toggle-mode {
+      cursor: pointer;
+    }
+
+    .ai-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>DYP Student</h2>
+    <a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="attendance.html"><i class="fas fa-calendar-check"></i> Attendance</a>
+    <a href="timetable.html"><i class="fas fa-clock"></i> Timetable</a>
+    <a href="result.html"><i class="fas fa-file-alt"></i> Results</a>
+    <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>Student Dashboard</h1>
+      <div class="toggle-mode" onclick="toggleMode()">
+        <i class="fas fa-adjust"></i> Toggle Mode
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="card">
+        <h3>Today's Schedule</h3>
+        <p>9:00 AM - DBMS Lab | 11:00 AM - DSA Lecture | 2:00 PM - AI Tutorial</p>
+      </div>
+      <div class="card">
+        <h3>Latest Results</h3>
+        <p>DBMS: 78/100 | DSA: 85/100 | AI: 91/100</p>
+      </div>
+      <div class="card">
+        <h3>Announcements</h3>
+        <p>📢 Mid-sem Exam starts from 10th June. Hall tickets will be issued next week.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-chat" onclick="openChat()">
+    <i class="fas fa-robot"></i>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function openChat() {
+      alert("Launching AI Assistant Chat... (integrate with backend)");
+    }
+  </script>
+</body>
+</html>

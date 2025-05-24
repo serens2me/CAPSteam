@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Dashboard | DYP College</title>
+  <link rel="stylesheet" href="Tstyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+
+  <header class="header">
+    <img src="dyp_logo.png" alt="College Logo" class="logo">
+    <h1>👩‍🏫 Teacher Dashboard – D Y PATIL College</h1>
+  </header>
+
+  <main class="teacher-panel">
+    <section class="card gradient-bg">
+      <h2>📚 Add Lecture & Face Recognition Attendance</h2>
+      <form id="lectureForm">
+        <label>📘 Subject Name:
+          <input type="text" placeholder="Enter subject name..." required />
+        </label>
+        <label>🕒 Lecture Time:
+          <input type="time" required />
+        </label>
+        <label>📅 Date:
+          <input type="date" required />
+        </label>
+        <button type="submit">🎥 Start Face Recognition</button>
+      </form>
+      <p class="note">💡 Attendance will auto-detect faces within a <strong>50m radius</strong> of the set location.</p>
+    </section>
+
+    <section class="card dark-card">
+      <h2>📝 Add Student Marks</h2>
+      <form id="marksForm">
+        <label>🔢 Roll Number:
+          <input type="text" placeholder="Enter Roll No." required />
+        </label>
+        <label>📖 Subject:
+          <input type="text" placeholder="Enter Subject" required />
+        </label>
+        <label>🎯 Marks:
+          <input type="number" placeholder="0 - 100" min="0" max="100" required />
+        </label>
+        <button type="submit">✅ Submit Marks</button>
+      </form>
+    </section>
+
+    <section class="card location-card">
+  <h2>📍 Adjust Attendance Location</h2>
+  <p>Set your lecture zone (attendance works within 50 meters of this):</p>
+
+  <div class="loc-inputs">
+    <input type="text" id="latitude" placeholder="Latitude" />
+    <input type="text" id="longitude" placeholder="Longitude" />
+    <button onclick="updateMap()">📌 Set Location</button>
+  </div>
+
+  <div id="map" style="height: 300px; margin-top: 20px; border-radius: 10px;"></div>
+  <p id="locationStatus" class="success-text"></p>
+</section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 D.Y. Patil College of Engineering – Teacher Portal</p>
+  </footer>
+
+  <script src="Tscript.js"></script>
+  <!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="Tscript.js"></script>
+
+</body>
+</html>

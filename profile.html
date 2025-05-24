@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Profile | D.Y. Patil College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #003366;
+      color: white;
+      flex-wrap: wrap;
+    }
+    .logo {
+      height: 60px;
+      margin-right: 20px;
+    }
+    h1 { font-size: 1.5rem; }
+    .profile-container {
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .student-profile {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      gap: 20px;
+    }
+    .student-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .student-info {
+      flex: 1;
+      min-width: 240px;
+    }
+    .student-info p { margin: 6px 0; }
+    .attendance-section, .performance-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    .attendance-section video {
+      margin-top: 15px;
+      border-radius: 10px;
+      display: none;
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border: 3px solid #003366;
+    }
+    button {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0055a5;
+    }
+    input[type="text"] {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #003366;
+      color: white;
+      margin-top: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      .student-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .student-info { text-align: left; }
+      header h1 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="dyp_logo.png" alt="DY Patil Logo" class="logo" />
+    <h1>D.Y. Patil College of Engineering, Kasaba Bawada</h1>
+  </header>
+  <main class="profile-container">
+    <section class="student-profile">
+      <img src="student-photo.jpg" alt="Student Photo" class="student-photo" />
+      <div class="student-info">
+        <h2 id="name">John Doe</h2>
+        <p><strong>Roll No:</strong> <span id="roll">123456</span></p>
+        <p><strong>Branch:</strong> Computer Science & Engineering</p>
+        <p><strong>Email:</strong> <span id="email">john.doe@dypgroup.edu.in</span></p>
+        <p><strong>Phone:</strong> <span id="phone">+91-9876543210</span></p>
+        <button onclick="enableEditing()">✏️ Edit Profile</button>
+        <div id="edit-form" style="display: none;">
+          <input type="text" id="edit-email" placeholder="Enter new email">
+          <input type="text" id="edit-phone" placeholder="Enter new phone">
+          <button onclick="saveChanges()">💾 Save</button>
+        </div>
+      </div>
+    </section>
+    <section class="attendance-section">
+      <h2>Face Recognition Attendance</h2>
+      <button onclick="startCamera()">📷 Mark Attendance</button>
+      <p id="attendance-status">Status: Not marked</p>
+      <video id="video" autoplay muted></video>
+    </section>
+    <section class="performance-section">
+      <h2>Academic Performance</h2>
+      <canvas id="performanceChart"></canvas>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 D.Y. Patil College of Engineering. All rights reserved.</p>
+  </footer>
+  <script>
+    function startCamera() {
+      const video = document.getElementById("video");
+      const status = document.getElementById("attendance-status");
+      video.style.display = "block";
+      status.textContent = "Status: Activating webcam...";
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+          video.srcObject = stream;
+          status.textContent = "Status: Webcam active. Please look at the camera.";
+        })
+        .catch((err) => {
+          status.textContent = "Error: Unable to access webcam. " + err.message;
+        });
+    }
+    const ctx = document.getElementById('performanceChart').getContext('2d');
+    const performanceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6'],
+        datasets: [{
+          label: 'CGPA',
+          data: [8.2, 8.5, 8.4, 8.7, 8.9, 9.1],
+          backgroundColor: '#0077cc',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 10
+          }
+        }
+      }
+    });
+    function enableEditing() {
+      document.getElementById('edit-form').style.display = 'block';
+    }
+    function saveChanges() {
+      const newEmail = document.getElementById('edit-email').value;
+      const newPhone = document.getElementById('edit-phone').value;
+      if (newEmail) document.getElementById('email').textContent = newEmail;
+      if (newPhone) document.getElementById('phone').textContent = newPhone;
+      document.getElementById('edit-form').style.display = 'none';
+      alert('Profile updated (note: this is client-side only).');
+    }
+  </script>
+</body>
+</html>

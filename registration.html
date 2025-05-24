@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration | D Y PATIL College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0D3B66;
+      --secondary: #FAA916;
+      --accent: #F4F4F9;
+      --text: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      width: 400px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--secondary);
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .popup.show {
+      display: block;
+    }
+
+    .popup h3 {
+      color: green;
+    }
+
+    .popup p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Register Now</h2>
+  <form id="registerForm">
+    <input type="text" id="fullname" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="tel" id="phone" placeholder="Phone Number" required />
+    <input type="date" id="dob" required />
+    <select id="gender" required>
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<div class="popup" id="successPopup">
+  <h3>✔ Registration Successful!</h3>
+  <p>Redirecting to login page...</p>
+</div>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const data = {
+    fullname: document.getElementById('fullname').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    dob: document.getElementById('dob').value,
+    gender: document.getElementById('gender').value,
+    password: document.getElementById('password').value
+  };
+
+  try {
+    const response = await fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      document.getElementById('successPopup').classList.add('show');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 2500);
+    } else {
+      alert('Registration failed: ' + result.error);
+    }
+  } catch (err) {
+    alert('Error: Could not connect to the server.');
+  }
+});
+</script>
+
+</body>
+</html>

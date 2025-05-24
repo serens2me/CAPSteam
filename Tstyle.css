@@ -1,0 +1,129 @@
+:root {
+  --primary: #004aad;
+  --accent: #ffb703;
+  --light: #f5f8fa;
+  --dark: #1a1a1a;
+  --white: #ffffff;
+  --soft: #f1f3f7;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--light);
+  margin: 0;
+  padding: 0;
+  color: var(--dark);
+}
+
+.header {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  height: 50px;
+}
+
+.header h1 {
+  font-size: 26px;
+  margin: 0;
+}
+
+.teacher-panel {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  background: var(--white);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #d6e4ff, #f5faff);
+}
+
+.dark-card {
+  background: linear-gradient(135deg, #ffe1a8, #fff5d7);
+}
+
+.location-card {
+  background: linear-gradient(135deg, #c2f0f7, #f0faff);
+}
+
+.card h2 {
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.card label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.card button {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #00368d;
+  transform: scale(1.03);
+}
+
+.note {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.loc-inputs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.success-text {
+  color: green;
+  margin-top: 10px;
+}
+
+footer {
+  background: #f0f0f0;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+#map {
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
